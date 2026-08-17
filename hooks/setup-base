@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+cat <<EOF >/etc/profile.d/deepseek-harness.sh
+export PATH="${SDK}/bin:\$PATH"
+EOF
+
+# `dsh plugin` shells out to pnpm to manage a profile's out-of-tree plugins.
+# Expose pnpm via the bundled Node's corepack when it is available, so the
+# plugin workflow works without adding a separate Node/pnpm SDK. Guarded on
+# existence so we never install a broken shim.
+if [ -x "${SDK}/bin/corepack" ]; then
+    install -d /usr/local/bin
+    cat <<EOF >/usr/local/bin/pnpm
+#!/usr/bin/bash
+exec "${SDK}/bin/corepack" pnpm "\$@"
+EOF
+    chmod +x /usr/local/bin/pnpm
+fi

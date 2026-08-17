@@ -1,0 +1,44 @@
+name: deepseek-harness
+adopt-info: deepseek-harness
+summary: DeepSeek Harness (dsh) — plugin-based agent harness
+description: |
+  This SDK provides DeepSeek Harness (dsh), an open-source, plugin-based agent
+  harness from DeepSeek AI. The dsh CLI and its bundled Node.js runtime are
+  prebuilt into the SDK image, so dsh is on PATH inside the workshop with no
+  runtime install step. All harness user data — profiles, sessions, and
+  configuration — is persisted on the host under ~/.dsh across workshop
+  updates, and the web UI port is exposed through a tunnel so it can be opened
+  from the host.
+license: MIT
+platforms:
+  ubuntu@22.04:amd64:
+  ubuntu@24.04:amd64:
+  ubuntu@26.04:amd64:
+
+plugs:
+  dsh-home:
+    interface: mount
+    workshop-target: /home/workshop/.dsh
+
+slots:
+  dsh-web:
+    interface: tunnel
+    endpoint: 3080
+
+parts:
+  deepseek-harness:
+    plugin: npm
+    source: .
+    npm-include-node: true
+    npm-node-version: "22.23.2"
+    build-packages:
+      # node-pty (a transitive dependency) has no prebuilt binary for the
+      # bundled Node and is compiled from source by node-gyp during install.
+      - build-essential
+      - python3
+    override-pull: |
+      VERSION="$(cat "$CRAFT_PROJECT_DIR/VERSION")"
+      craftctl set version="$VERSION"
+      curl -fLO "https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-${VERSION}.tgz"
+      tar -xzf "dsh-${VERSION}.tgz" --strip-components=1 -C "$CRAFT_PART_SRC"
+      rm "dsh-${VERSION}.tgz"

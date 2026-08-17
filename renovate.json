@@ -11,21 +11,21 @@
       "customType": "regex",
       "managerFilePatterns": ["/^VERSION$/"],
       "matchStrings": [
-        "(?<currentValue>[0-9.]+)"
+        "(?<currentValue>[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.]+)?)"
       ],
-      "depNameTemplate": "TODO_DEP_NAME",
-      "datasourceTemplate": "TODO_DATASOURCE",
-      "versioningTemplate": "semver"
+      "depNameTemplate": "@deepseek-ai/dsh",
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "npm"
     }
   ],
   "baseBranchPatterns": [
-    "TODO_BRANCH"
+    "latest"
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["TODO_DEP_NAME"],
-      "matchBaseBranches": ["TODO_BRANCH"],
-      "allowedVersions": "/^TODO_VERSION_PREFIX\\./"
+      "matchPackageNames": ["@deepseek-ai/dsh"],
+      "matchBaseBranches": ["latest"],
+      "ignoreUnstable": false
     }
   ]
 }
