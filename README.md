@@ -20,16 +20,27 @@ A minimal workshop:
 
 ```yaml
 # workshop.yaml
-name: dsh
+name: dev
 base: ubuntu@24.04
 sdks:
-  - name: deepseek-harness
+  - name: system
+    plugs:
+      dsh-web:
+        interface: tunnel
+        endpoint: localhost:3080
+  - name: dsh
     channel: latest/stable
+    plugs:
+      dsh-web:
+        interface: tunnel
+        endpoint: localhost:3080
 
 actions:
   web: |
     dsh web
 ```
+
+n.b. Don't forget to run `workshop connect dev/system:dsh-web dev/dsh:dsh-web` to activate the connection.
 
 This demonstrates booting the DeepSeek Harness web UI. Running the `web` action
 starts the server on `http://127.0.0.1:3080` inside the workshop, reachable from
