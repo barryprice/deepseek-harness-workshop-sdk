@@ -1,5 +1,5 @@
-name: deepseek-harness
-adopt-info: deepseek-harness
+name: dsh
+adopt-info: dsh
 summary: DeepSeek Harness (dsh) — plugin-based agent harness
 description: |
   This SDK provides DeepSeek Harness (dsh), an open-source, plugin-based agent
@@ -26,7 +26,7 @@ slots:
     endpoint: 3080
 
 parts:
-  deepseek-harness:
+  dsh:
     plugin: npm
     source: .
     npm-include-node: true
