@@ -1,4 +1,5 @@
 name: Build and Upload SDK
+permissions: {}
 
 on:
   push:
@@ -17,10 +18,10 @@ concurrency:
 
 jobs:
   build-and-upload:
-    uses: canonical/sdkcraft-actions/.github/workflows/upload.yml@main
+    uses: canonical/sdkcraft-actions/.github/workflows/upload.yml@99381343a0e743cd52c04057ea432fe2a7066859 # main
     with:
-      platforms: '["ubuntu@22.04:amd64","ubuntu@24.04:amd64","ubuntu@26.04:amd64"]'
-      platform-flag: "--platform"
-      risk: "stable"
+      platforms: '["amd64"]'
+      platform-flag: "--build-for"
+      runs-on: '["ubuntu-latest"]'
     secrets:
       SDKCRAFT_STORE_CREDENTIALS: ${{ secrets.SDKCRAFT_STORE_CREDENTIALS_STAGING }}
