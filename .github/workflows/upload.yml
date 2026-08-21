@@ -24,4 +24,4 @@ jobs:
       platform-flag: "--build-for"
       runs-on: '["ubuntu-latest"]'
     secrets:
-      SDKCRAFT_STORE_CREDENTIALS: ${{ secrets.SDKCRAFT_STORE_CREDENTIALS_STAGING }}
+      SDKCRAFT_STORE_CREDENTIALS: ${{ secrets.SDKCRAFT_STORE_CREDENTIALS_PROD }}
