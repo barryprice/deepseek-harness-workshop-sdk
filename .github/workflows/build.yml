@@ -12,6 +12,6 @@ concurrency:
 
 jobs:
   build:
-    uses: canonical/sdkcraft-actions/.github/workflows/build.yml@99381343a0e743cd52c04057ea432fe2a7066859 # main
+    uses: canonical/sdkcraft-actions/.github/workflows/build.yml@f1471e753bc48c229dc649acbf712ad36fc574ad # main
     with:
       runs-on: '["ubuntu-latest"]'
