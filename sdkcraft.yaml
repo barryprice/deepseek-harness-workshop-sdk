@@ -32,6 +32,8 @@ parts:
     npm-include-node: true
     # Node 24 (Active LTS "Krypton"); matches upstream's build/publish runtime
     # and its engines floor (^22.19.0 || >=24.0.0). Node 22 is in maintenance.
+    # Renovate tracks this value (see the `node` regex custom manager in
+    # renovate.json) and keeps it on the latest stable 24.x.
     npm-node-version: "24.19.0"
     build-packages:
       # node-pty (a transitive dependency) has no prebuilt binary for the
