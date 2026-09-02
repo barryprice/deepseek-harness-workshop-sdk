@@ -36,8 +36,11 @@ parts:
     # renovate.json) and keeps it on the latest stable 24.x.
     npm-node-version: "24.19.0"
     build-packages:
-      # node-pty (a transitive dependency) has no prebuilt binary for the
-      # bundled Node and is compiled from source by node-gyp during install.
+      # node-pty and koffi (transitive deps) ship prebuilt N-API binaries and
+      # load on the bundled Node without compiling, so build-essential/python3
+      # are not strictly required for the three Linux targets. Kept as a
+      # belt-and-braces fallback in case a prebuilt binary is ever absent and
+      # node-gyp has to build from source.
       - build-essential
       - python3
     override-pull: |
