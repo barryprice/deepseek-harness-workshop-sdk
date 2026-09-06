@@ -148,6 +148,41 @@ dsh --help           # prints the launcher command grammar and exits 0
 
 ---
 
+## Known limitations
+
+### "Open configuration file" cannot open on the host
+
+The Settings pane's **Open configuration file** action does not work in this
+SDK and fails with *"Could not open configuration file"*.
+
+The action is a *host-side* convenience: when clicked, the `dsh` process
+running **inside the workshop** resolves the container-local settings path
+(`~/.dsh/...`) and spawns a native text editor on its own host via
+`xdg-open` / the desktop file association. In the workshop topology that can
+never succeed:
+
+- The workshop container is headless — it has no display server and does not
+  ship `xdg-open`, so the spawn fails immediately.
+- The path handed to the editor is a container path that does not exist on the
+  host machine, and the browser never receives a host-usable path to open.
+
+Upstream, the button's visibility is gated on *loopback detection* (the browser
+reached `dsh web` over a loopback address) rather than on whether a native
+opener is actually available, so a tunneled browser makes it appear even though
+it can never work here. This cannot be disabled from a runtime plugin or the
+SDK — it requires an upstream fix. See
+[deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness).
+
+**Workaround:** edit the settings file from inside the workshop instead:
+
+```bash
+workshop shell
+# inside the workshop:
+cat ~/.dsh/settings.yaml      # or open it with the editor of your choice
+```
+
+---
+
 ## Plugs (resources this SDK consumes)
 
 ### `dsh-home`
