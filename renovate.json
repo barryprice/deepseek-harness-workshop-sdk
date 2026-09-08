@@ -38,7 +38,7 @@
       "matchPackageNames": ["@deepseek-ai/dsh"],
       "matchBaseBranches": ["latest"],
       "ignoreUnstable": false,
-      "followTag": "latest"
+      "followTag": "alpha"
     },
     {
       "matchPackageNames": ["node"],
