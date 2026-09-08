@@ -65,7 +65,7 @@ the other tracks for on-going pre-release work.
 
 Upstream alpha releases go to `latest/edge` only.
 
-Upstream beta releases (if any) go to `latest/edge and then `latest/beta`.
+Upstream beta releases (if any) go to `latest/edge` and then `latest/beta`.
 
 Upstream release candidates (`-rc`) releases go to `latest/edge`, then
 `latest/beta`, and then finally `latest/candidate`.
