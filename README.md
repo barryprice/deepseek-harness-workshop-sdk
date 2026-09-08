@@ -51,7 +51,7 @@ the host through the `dsh-web` tunnel. The `base` may be any of `ubuntu@22.04`,
 
 ## Snap channels and (in)stability
 
-The SDK is currently only published to the `latest/edge` track.
+The SDK is currently only published to candidate, beta and edge tracks.
 
 Upstream's DeepSeek Harness releases are all marked **Pre-release**, they have
 not reached a stable release cadence yet. Upgrades between these pre-release
@@ -61,7 +61,16 @@ by `workshop launch` to recover from incompatibilities between versions.
 Because of that, we intentionally do not publish to `latest/stable` — data-loss
 and breakage are not acceptable on a stable track. Once upstream starts
 producing stable releases, we will publish to `latest/stable` and keep
-`latest/edge` for on-going pre-release work.
+the other tracks for on-going pre-release work.
+
+Upstream alpha releases go to `latest/edge` only.
+
+Upstream beta releases (if any) go to `latest/edge and then `latest/beta`.
+
+Upstream release candidates (`-rc`) releases go to `latest/edge`, then
+`latest/beta`, and then finally `latest/candidate`.
+
+Only stable releases will be promoted to `latest/stable`.
 
 ---
 
