@@ -10,7 +10,7 @@ description: |
   updates, and the web UI port is exposed through a tunnel so it can be opened
   from the host.
 license: MIT
-version: 0.1.5-rc.1
+version: 0.1.5-rc.2
 platforms:
   ubuntu@22.04:amd64:
   ubuntu@24.04:amd64:
