@@ -10,6 +10,7 @@ description: |
   updates, and the web UI port is exposed through a tunnel so it can be opened
   from the host.
 license: MIT
+version: 0.1.5-rc.1
 platforms:
   ubuntu@22.04:amd64:
   ubuntu@24.04:amd64:
@@ -28,24 +29,15 @@ slots:
 parts:
   dsh:
     plugin: npm
-    source: .
+    source: https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-${CRAFT_PROJECT_VERSION}.tgz
+    build-environment:
+      - npm_config_ignore_scripts: "true"
     npm-include-node: true
     # Node 24 (Active LTS "Krypton"); matches upstream's build/publish runtime
     # and its engines floor (^22.19.0 || >=24.0.0). Node 22 is in maintenance.
     # Renovate tracks this value (see the `node` regex custom manager in
     # renovate.json) and keeps it on the latest stable 24.x.
     npm-node-version: "24.21.0"
-    build-packages:
-      # node-pty and koffi (transitive deps) ship prebuilt N-API binaries and
-      # load on the bundled Node without compiling, so build-essential/python3
-      # are not strictly required for the three Linux targets. Kept as a
-      # belt-and-braces fallback in case a prebuilt binary is ever absent and
-      # node-gyp has to build from source.
-      - build-essential
-      - python3
-    override-pull: |
-      VERSION="$(cat "$CRAFT_PROJECT_DIR/VERSION")"
-      craftctl set version="$VERSION"
-      curl -fLO "https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-${VERSION}.tgz"
-      tar -xzf "dsh-${VERSION}.tgz" --strip-components=1 -C "$CRAFT_PART_SRC"
-      rm "dsh-${VERSION}.tgz"
+    prime:
+      - -include
+      - -share
