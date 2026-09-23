@@ -63,12 +63,11 @@ and breakage are not acceptable on a stable track. Once upstream starts
 producing stable releases, we will publish to `latest/stable` and keep
 the other tracks for on-going pre-release work.
 
-Upstream alpha releases go to `latest/edge` only.
+Upstream alpha releases go to `latest/edge`.
 
-Upstream beta releases (if any) go to `latest/edge` and then `latest/beta`.
+Upstream next releases go to `latest/beta`.
 
-Upstream release candidates (`-rc`) releases go to `latest/edge`, then
-`latest/beta`, and then finally `latest/candidate`.
+Upstream release candidates (`-rc`) releases go to `latest/candidate`.
 
 Only stable releases will be promoted to `latest/stable`.
 
