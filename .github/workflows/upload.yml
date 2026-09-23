@@ -23,6 +23,7 @@ jobs:
       platforms: '["amd64"]'
       platform-flag: "--build-for"
       runs-on: '["ubuntu-latest"]'
-      track: 'latest/beta,latest/candidate'
+      track: 'latest'
+      risk: 'beta'
     secrets:
       SDKCRAFT_STORE_CREDENTIALS: ${{ secrets.SDKCRAFT_STORE_CREDENTIALS_PROD }}
