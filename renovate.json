@@ -31,7 +31,9 @@
     }
   ],
   "baseBranchPatterns": [
-    "latest"
+    "latest",
+    "next",
+    "alpha"
   ],
   "packageRules": [
     {
@@ -41,8 +43,20 @@
       "followTag": "latest"
     },
     {
+      "matchPackageNames": ["@deepseek-ai/dsh"],
+      "matchBaseBranches": ["next"],
+      "ignoreUnstable": false,
+      "followTag": "next"
+    },
+    {
+      "matchPackageNames": ["@deepseek-ai/dsh"],
+      "matchBaseBranches": ["alpha"],
+      "ignoreUnstable": false,
+      "followTag": "alpha"
+    },
+    {
       "matchPackageNames": ["node"],
-      "matchBaseBranches": ["latest"],
+      "matchBaseBranches": ["latest", "next", "alpha"],
       "versioning": "node",
       "respectLatest": true,
       "major": { "enabled": false }
