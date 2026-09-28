@@ -36,13 +36,13 @@
   "packageRules": [
     {
       "matchPackageNames": ["@deepseek-ai/dsh"],
-      "matchBaseBranches": ["latest"],
+      "matchBaseBranches": ["next"],
       "ignoreUnstable": false,
       "followTag": "next"
     },
     {
       "matchPackageNames": ["node"],
-      "matchBaseBranches": ["latest"],
+      "matchBaseBranches": ["next"],
       "versioning": "node",
       "respectLatest": true,
       "major": { "enabled": false }
