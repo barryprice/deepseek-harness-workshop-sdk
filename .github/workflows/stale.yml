@@ -1,0 +1,24 @@
+name: Close stale PRs
+on:
+  schedule:
+    - cron: '30 7 * * 1'   # every Monday at 7:30 UTC
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@4391f3da665fdf50b6810c1a66712fb9ba21aa93 # v11
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-pr-message: 'This PR has been inactive for 60 days. If it is still relevant, please leave a comment or mark it as ready. Otherwise, it will close in 7 days.'
+          close-pr-message: 'Closing this PR because it has been stale for 7 additional days. Feel free to reopen when the work is ready.'
+          days-before-stale: 60
+          days-before-close: 7
+          only-prs: true
+
