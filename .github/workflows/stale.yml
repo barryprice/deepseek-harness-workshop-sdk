@@ -20,5 +20,3 @@ jobs:
           close-pr-message: 'Closing this PR because it has been stale for 7 additional days. Feel free to reopen when the work is ready.'
           days-before-stale: 60
           days-before-close: 7
-          only-prs: true
-
